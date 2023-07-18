@@ -19,23 +19,6 @@ def home():
     return render_template('index.html')
 
 # define additional routes here
-# route to handle the image processing and translation
-@app.route(f'{base_url}/process_image', methods=['POST'])
-def process_image():
-    # get the uploaded image file
-    image_file = request.files['image']
-    
-    # save the image file to a temporary location
-    temp_image_path = '/path/to/temp/image.png'  # replace with the actual path
-    
-    image_file.save(temp_image_path)
-    
-    # process and translate the image
-    translated_text = process_and_translate(temp_image_path)
-    
-    # render the result template and pass the translated text
-    return render_template('result.html', translated_text=translated_text)
-
 # for example:
 # @app.route(f'{base_url}/team_members')
 # def team_members():
@@ -50,6 +33,7 @@ if __name__ == '__main__':
 
 
 # process braille
+'''
 from imutils.perspective import four_point_transform as FPT
 from collections import Counter # if you pass in an iterable, counter counts each element and remembers how many times each element shows up
 import matplotlib.pyplot as plt # executing plts
@@ -67,3 +51,4 @@ warnings.filterwarnings("ignore")
 
 
 # hello
+'''
