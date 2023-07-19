@@ -45,8 +45,8 @@
               <p class="lead fw-normal text-white-50 mb-5 fs-3">Upload images of braille text for  our AI to translate it into English text!
               <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                 <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#Upload">Get Started</a>
-                <a class="btn btn-outline-light btn-lg px-4" href="https://front-end-practice-2023-summer-computer-vision-6.2023-summer-computer-vision.repl.co/about.html">Learn More</a>
-              </div>
+                <a class="btn btn-outline-light btn-lg px-4" href="about.html">Learn More</a>
+              </div>s
             </div>
           </div>
           <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
@@ -69,7 +69,7 @@
               <form action="script.js" method="get">
                 <input class="form-control mb-3 fs-4" type="file" placeholder="Upload File" aria-label="Upload File" aria-describedby="button-newsletter" />
                 <button class="btn btn-outline-light fs-3" id="button-newsletter" type="submit">Upload</button>
-              </form>
+              </form>        
             </div>
             <!--<div class="small text-white-50">We care about privacy, and will never share your data.</div> -->
           </div>
@@ -239,7 +239,7 @@
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Core theme JS-->
-  <script src="js/scripts.js"></script>
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 
 </html>
