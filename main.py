@@ -20,6 +20,9 @@ def home():
     return render_template('index.html')
 
 # define additional routes here
+@app.route(base_url + '/about.html')
+def about():
+    return render_template('about.html')
 
 # for example:
 # @app.route(f'{base_url}/team_members')
