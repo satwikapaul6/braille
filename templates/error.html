@@ -46,14 +46,14 @@
             <div class="display-6 fw-bold text-white-50 py-4">This image might not contain braille or try using another braille image.</div>
             <br>
             <div class="input-group">
-              <form action="script.js" method="get">
-                <input class="form-control mb-1 fs-4" type="file" placeholder="Upload File" aria-label="Upload File" aria-describedby="button-newsletter" />
-                <button class="btn btn-outline-light fs-3" id="button-newsletter" type="submit">Upload</button>
-              </form>        
+              <form action="{{url_for('process_image')}}" method="POST" enctype="multipart/form-data">
+                <input class="form-control mb-3 fs-4" type="file" name = "image" accept="image" />
+                <button class="btn btn-outline-light fs-3" type="submit">Upload</button>
+              </form>     
             </div>
           </div>
         
-              <img src = "static/thing2.gif" class="percent-80" height=640 width=640 >
+              <img src = "static/images/thing2.gif" class="percent-80" height=640 width=640 >
             </div>
  
           <div class="ms-xl-4">
