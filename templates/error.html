@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Braille Translator</title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" /> 
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href="{{url_for('static', filename='css/styles.css')}}" rel="stylesheet" />
+</head>
+
+<body class="d-flex flex-column h-100">
+  <main class="flex-shrink-0">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-gradient ">
+      <div class="container px-5">
+        <a class="navbar-brand fs-4" href="index.html">Braille Translator</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+            class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-0 mb-lg-0">
+            <li class="nav-item"><a class="nav-link fs-4" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link fs-4" href="about.html">About</a></li>
+
+          </ul>
+          </li>
+
+        </div>
+      </div>
+    </nav>
+     <section class="py-20 px-10 my-0" id = "Upload">
+      <aside class="bg-primary bg-gradient p-5 p-sm-5 mt-0">
+        <div
+          class="d-flex justify-content-between flex-column flex-xl-row text-center text-xl-start">
+          <div class="mb-2 mb-xl-0">
+            <br><br>
+            <div class="display-1 fw-bold text-white">Error...</div>
+            <div class="display-4 fw-bold text-white-50">Please Try Again</div>
+            <div class="display-6 fw-bold text-white-50 py-4">This image might not contain braille or try using another braille image.</div>
+            <br>
+            <div class="input-group">
+              <form action="script.js" method="get">
+                <input class="form-control mb-1 fs-4" type="file" placeholder="Upload File" aria-label="Upload File" aria-describedby="button-newsletter" />
+                <button class="btn btn-outline-light fs-3" id="button-newsletter" type="submit">Upload</button>
+              </form>        
+            </div>
+          </div>
+        
+              <img src = "static/thing2.gif" class="percent-80" height=640 width=640 >
+            </div>
+ 
+          <div class="ms-xl-4">
+            <div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+
+
+
+
+    
+    <!-- Header-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+
+</html>

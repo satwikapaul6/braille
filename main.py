@@ -33,32 +33,44 @@ def about():
 # route that will process our translation results
 @app.route(base_url + '/process_image', methods = ['POST'])
 def process_image():
+    try:
+        # get the uploaded image file
+        image_file = request.files['image']
 
-    # get the uploaded image file
-    image_file = request.files['image']
+        # create a temporary directory
+        temp_dir = 'uploaded_images'
+        os.makedirs(temp_dir, exist_ok = True)
 
-    # create a temporary directory
-    temp_dir = 'uploaded_images'
-    os.makedirs(temp_dir, exist_ok = True)
-
-    # generate a unique filename for the uploaded image
-    filename = 'uploaded_image.png'
-    temp_image_path = os.path.join(temp_dir, filename)
+        # generate a unique filename for the uploaded image
+        filename = 'uploaded_image.png'
+        temp_image_path = os.path.join(temp_dir, filename)
+        
+        # save the image file to the temporary directory
+        image_file.save(temp_image_path)
+        
+        # process and translate the image
+        translated_text = process_and_translate(temp_image_path)
     
-    # save the image file to the temporary directory
-    image_file.save(temp_image_path)
-    
-    # process and translate the image
-    translated_text = process_and_translate(temp_image_path)
-    
-    # render the result template and pass the translated text and image URL
-    image_url = url_for('uploaded_image', filename=filename)
-    return render_template('result.html', Braille_Translation = translated_text, image_url=image_url)
+        # render the result template and pass the translated text and image URL
+        image_url = url_for('uploaded_image', filename=filename)
+        return render_template('result.html', Braille_Translation = translated_text, image_url=image_url)
+    except Exception as e:
+        return render_template('error.html')
 
 # Route to serve the uploaded image
 @app.route('/uploaded_images/<filename>')
 def uploaded_image(filename):
     return send_from_directory('uploaded_images', filename)
+
+# Error handling function
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html'), 404
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    error_message = f"An error occurred: {str(e)}"
+    return render_template('error.html'), 500
 
 
 
