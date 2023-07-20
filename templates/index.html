@@ -49,8 +49,7 @@
               </div>s
             </div>
           </div>
-          <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
-              src="https://www.pngall.com/wp-content/uploads/4/Aardvark-PNG.png" alt="..." /></div>
+          <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="{{ url_for('static', filename='images/aardvark1.png') }}" alt="..." /></div>
         </div>
       </div>
     </header>
@@ -66,9 +65,9 @@
           </div>
           <div class="ms-xl-4">
             <div class="input-group mb-2">
-              <form action="script.js" method="get">
-                <input class="form-control mb-3 fs-4" type="file" placeholder="Upload File" aria-label="Upload File" aria-describedby="button-newsletter" />
-                <button class="btn btn-outline-light fs-3" id="button-newsletter" type="submit">Upload</button>
+              <form action="{{url_for('process_image')}}" method="POST" enctype="multipart/form-data">
+                <input class="form-control mb-3 fs-4" type="file" name = "image" accept="image" />
+                <button class="btn btn-outline-light fs-3" type="submit">Upload</button>
               </form>        
             </div>
             <!--<div class="small text-white-50">We care about privacy, and will never share your data.</div> -->
@@ -92,7 +91,7 @@
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i>
                 </div>
                 <h2 class="h5">Alex Zhao</h2>
-                <p class="mb-0"> 
+                <p class="mb-0"> I'm 15 years old and I enjoy drawing comics. My favorite thing(s) to work on in our project were model training and frontend website development.
                 </p>
               </div>
               <div class="col mb-5 h-100">
@@ -106,8 +105,7 @@
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>
                 </div>
                 <h2 class="h5">Taylor Domicello</h2>
-                <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more
-                  text.</p>
+                <p class="mb-0">I am a 15 year old girl from New Jersey.  My favorite part of the project was being able to learn new coding skills.  Outside of coding I enjoy going out with my friends and playing softball and volleyball.
               </div>
               <div class="col h-100">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i>

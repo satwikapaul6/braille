@@ -50,7 +50,7 @@
             </div>
           </div>
           <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5"
-              src="https://www.pngall.com/wp-content/uploads/4/Aardvark-PNG.png" alt="..." /></div>
+            src="{{ url_for('static', filename='images/aardvark2.png') }}" alt="..." /></div>
         </div>
       </div>
     </header>
@@ -61,15 +61,15 @@
         <div
           class="d-flex align-items-center justify-content-between flex-column flex-xl-row text-center text-xl-start">
           <div class="mb-4 mb-xl-0">
-            <div class="fs-1 fw-bold text-white">Upload Image Here</div>
+            <div class="fs-1 fw-bold text-white">Upload Another Image Here!</div>
             <div class="fs-4 text-white-50">To translate into English.</div>
           </div>
           <div class="ms-xl-4">
             <div class="input-group mb-2">
-              <form action="script.js" method="get">
-                <input class="form-control mb-3 fs-4" type="file" placeholder="Upload File" aria-label="Upload File" aria-describedby="button-newsletter" />
-                <button class="btn btn-outline-light fs-3" id="button-newsletter" type="submit">Upload</button>
-              </form>        
+                <form action="{{url_for('process_image')}}" method="POST" enctype="multipart/form-data">
+                    <input class="form-control mb-3 fs-4" type="file" name = "image" accept="image" />
+                    <button class="btn btn-outline-light fs-3" type="submit">Upload</button>
+                </form>       
             </div>
             <!--<div class="small text-white-50">We care about privacy, and will never share your data.</div> -->
           </div>
@@ -84,7 +84,7 @@
           <div class="mb-4 mb-xl-0">
           <!--  <div class="fs-1 fw-bold text-white">Upload Image Here</div>
             <div class="fs-4 text-white-50">To translate into English.</div> -->
-            <img src={{Braille_Image}} alt="Image of Braille">
+            <img class="img-fluid rounded-3 my-5" src="{{ image_url }}" alt="Translated Image" />
           </div>
           <div class="ms-xl-4">
             <h1 class="fs-1 fw-bold text-white">Translation:</h1>

@@ -1,5 +1,5 @@
 # import requirements needed
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for, send_from_directory
 from utils import get_base_url
 import os
 
@@ -20,9 +20,48 @@ def home():
     return render_template('index.html')
 
 # define additional routes here
+@app.route(base_url + '/index.html')
+def return_home():
+    return render_template('index.html')
+
+# toggle between about and home
 @app.route(base_url + '/about.html')
 def about():
     return render_template('about.html')
+
+
+# route that will process our translation results
+@app.route(base_url + '/process_image', methods = ['POST'])
+def process_image():
+
+    # get the uploaded image file
+    image_file = request.files['image']
+
+    # create a temporary directory
+    temp_dir = 'uploaded_images'
+    os.makedirs(temp_dir, exist_ok = True)
+
+    # generate a unique filename for the uploaded image
+    filename = 'uploaded_image.png'
+    temp_image_path = os.path.join(temp_dir, filename)
+    
+    # save the image file to the temporary directory
+    image_file.save(temp_image_path)
+    
+    # process and translate the image
+    translated_text = process_and_translate(temp_image_path)
+    
+    # render the result template and pass the translated text and image URL
+    image_url = url_for('uploaded_image', filename=filename)
+    return render_template('result.html', Braille_Translation = translated_text, image_url=image_url)
+
+# Route to serve the uploaded image
+@app.route('/uploaded_images/<filename>')
+def uploaded_image(filename):
+    return send_from_directory('uploaded_images', filename)
+
+
+
 
 # for example:
 # @app.route(f'{base_url}/team_members')
@@ -57,7 +96,7 @@ warnings.filterwarnings("ignore")
 
 def process_and_translate(image_url):
     def get_image(url, iter = 2, width = None):
-        image = io.imread(url)
+        image = cv2.imread(url)
         if width:
             image = imutils.resize(image, width)
         ans = image.copy()
@@ -398,19 +437,19 @@ def process_and_translate(image_url):
                 # Get the corresponding class name
                 if predicted_probs[0, predicted_label] > .50:
                     predicted_class = model.config.id2label[predicted_label]
-                if predicted_class == 'period' or predicted_class == 'capital' or predicted_class == 'question%20mark':
-                    if predicted_class == 'period':
-                        predictions += '.'
-                    elif predicted_class == 'capital':
-                        nextLetterCapital = True
-                    elif predicted_class == 'question%20mark':
-                        predictions += '?'
-                else:
-                    if nextLetterCapital:
-                        predictions += predicted_class.upper()
-                        nextLetterCapital = False
+                    if predicted_class == 'period' or predicted_class == 'capital' or predicted_class == 'question%20mark':
+                        if predicted_class == 'period':
+                            predictions += '.'
+                        elif predicted_class == 'capital':
+                            nextLetterCapital = True
+                        elif predicted_class == 'question%20mark':
+                            predictions += '?'
                     else:
-                        predictions += predicted_class
+                        if nextLetterCapital:
+                            predictions += predicted_class.upper()
+                            nextLetterCapital = False
+                        else:
+                            predictions += predicted_class
         return predictions
 
     translated_text = get_predictions()
